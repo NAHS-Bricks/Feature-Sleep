@@ -43,7 +43,7 @@ void NahsBricksFeatureSleep::deliver(JsonDocument* out_json) {
     // deliver disabled value if is active
     if (RTCdata->disabled) {
         if (!out_json->containsKey("y")) out_json->createNestedArray("y");
-        JsonArray y_array = out_json->getMember("y").as<JsonArray>();
+        JsonArray y_array = out_json->operator[]("y").as<JsonArray>();
         y_array.add("q");
     }
 }
@@ -54,7 +54,7 @@ Processes feedback coming from BrickServer
 void NahsBricksFeatureSleep::feedback(JsonDocument* in_json) {
     // check if new disabled value is delivered
     if (in_json->containsKey("q")) {
-        RTCdata->disabled = in_json->getMember("q").as<bool>();
+        RTCdata->disabled = in_json->operator[]("q").as<bool>();
     }
 }
 
